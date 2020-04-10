@@ -7,6 +7,16 @@
   pointer-events: none;
 }
 
+.double-pic-class-big {
+  font-size: 100px;
+  width: auto;
+}
+
+.double-pic-class-small {
+  font-size: 50px;
+  width: auto;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
