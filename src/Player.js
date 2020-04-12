@@ -1,13 +1,64 @@
-const Player = class {
-    constructor(name) {
-        this.name = name;
+import React, { Component } from "react";
+import DoubleCard from "./DoubleCard";
+import {Container, Row, Col}  from 'react-bootstrap';
+import randomWords from 'random-words';
+
+class PlayerInfo extends Component{
+
+    constructor(props) {
+        super(props);
+        // this.name = props.name;
+        this.name = randomWords(1)[0];
+        this.cardCount = 10;
+       }
+       
+       render(){
+           return(
+               <div>
+                   <Col>{this.name}</Col>
+                   <Col>{this.cardsCount}</Col>
+               </div>
+           );
+       }
+    
     }
 
-    get cardCount() {
+
+
+class Player extends Component{
+
+    constructor(props) {
+        super(props);
+        this.name = props.name;
+        this.name = props.name;
+        this.cardCount = 10;
+       }
+
+    get CardCount() {
         return this.cardCount;
     }
-    set cardCount(value) {
+    set CardCount(value) {
         this.cardCount = value;        
+    }
+    
+    render(){
+        return(
+            <div>
+                <Container fluid>
+                    <div className="center">
+                    <Row>
+                        <PlayerInfo name={this.name} cardsCount={this.cardCount}/>
+                    </Row>
+                    <Row>
+                        <DoubleCard></DoubleCard>
+                    </Row>            
+
+                
+                    </div>
+                    </Container>    
+                
+            </div>        
+        );
     }
 }
 

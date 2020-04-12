@@ -1,22 +1,41 @@
 import React, { Component } from 'react';
-import DoubleCard from './DoubleCard';
-import { Player } from "./Player";
+import Player  from "./Player";
+import {Container, Row, Col}  from 'react-bootstrap';
 
 
 class DoubleGame extends Component{
     
     constructor(props){
         super(props);
+        // this.setState({
+        //     numOfPlayers: props.numOfPlayers
+        // });
         this.setState({
-            numOfPlayers: props.numOfPlayers
+            numOfPlayers: 2
         });
+    }
+
+    getPlayersTable = () =>{
+        let playersList = [];
+        for (let index = 0; index < 2; index++) {
+            playersList.push(
+                <Col>
+                    <Player />
+                </Col>
+            );
+        }                                
+        return playersList;
     }
     
 
     render() {
         return (
             <div>
-                <DoubleCard />             
+                <Container fluid>
+                    <Row>
+                        {this.getPlayersTable()}
+                    </Row>
+                </Container>        
             </div>
         )
     }
