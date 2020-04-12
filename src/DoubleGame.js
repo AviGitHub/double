@@ -16,7 +16,7 @@ class DoubleGame extends Component {
   getPlayersTable = () => {
     let playersList = [];
     for (let index = 0; index < this.state.numOfPlayers; index++) {
-        console.log(this.state.numOfPlayers);
+      console.log(this.state.numOfPlayers);
       playersList.push(
         <Col>
           <Player name={randomWords(1)[0]} />

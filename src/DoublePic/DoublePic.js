@@ -15,7 +15,7 @@ class DoublePic extends Component {
   render() {
     return (
       <div className={this.doublePicClass}>
-        <Button onClick={this.picSelectedCb}>{this.symbol}</Button>
+        <Button onClick={this.picSelectedCb(this.picId)}>{this.symbol}</Button>
       </div>
     );
   }
