@@ -5,22 +5,47 @@ import {Container, Row, Col}  from 'react-bootstrap';
 
 class DoubleCard extends Component{
 
+    picSelectedCb = id =>{
+        console.log(`called from ${id}`);
+    }
     render(){
         return(
             <div>
                 <Container fluid>
                     <Row>
-                        <Col><DoublePic doublePicClass="double-pic-class-big">a</DoublePic></Col>
-                        <Col><DoublePic doublePicClass="double-pic-class-small">b</DoublePic></Col>
+                        <Col>
+                            <DoublePic doublePicClass="double-pic-class-big"
+                                        picSelectedCb={this.picSelectedCb}
+                                        id={1}>a</DoublePic>
+                        </Col>
+                        <Col>
+                            <DoublePic doublePicClass="double-pic-class-big"
+                                        picSelectedCb={this.picSelectedCb}
+                                        id={1}>a</DoublePic>
+                        </Col>
                     </Row>
                     <Row>
-                        <Col><DoublePic doublePicClass="double-pic-class-big">a</DoublePic></Col>
-                        <Col><DoublePic doublePicClass="double-pic-class-small">b</DoublePic></Col>
-                    </Row>
+                    <Col>
+                            <DoublePic doublePicClass="double-pic-class-big"
+                                        picSelectedCb={this.picSelectedCb}
+                                        id={1}>a</DoublePic>
+                        </Col>
+                        <Col>
+                            <DoublePic doublePicClass="double-pic-class-big"
+                                        picSelectedCb={this.picSelectedCb}
+                                        id={1}>a</DoublePic>
+                        </Col>                    </Row>
                     <Row>
-                        <Col><DoublePic doublePicClass="double-pic-class-big">a</DoublePic></Col>
-                        <Col><DoublePic doublePicClass="double-pic-class-small">b</DoublePic></Col>
-                    </Row>
+                    <Col>
+                            <DoublePic doublePicClass="double-pic-class-big"
+                                        picSelectedCb={this.picSelectedCb}
+                                        id={1}>a</DoublePic>
+                        </Col>
+                        <Col>
+                            <DoublePic doublePicClass="double-pic-class-big"
+                                        picSelectedCb={this.picSelectedCb}
+                                        id={1}>a</DoublePic>
+                        </Col>                    </Row>
                 </Container>                
             </div>
             );        

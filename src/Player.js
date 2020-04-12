@@ -51,7 +51,7 @@ class Player extends Component{
                     </Row>
                     <Row>
                         <DoubleCard></DoubleCard>
-                    </Row>            
+                    </Row>   
 
                 
                     </div>
