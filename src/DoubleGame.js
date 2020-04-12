@@ -17,7 +17,8 @@ class DoubleGame extends Component{
         return (
             <div>
                 <DoubleCard />
-                <DoubleCard />                
+                <DoubleCard />
+                
             </div>
         )
     }
