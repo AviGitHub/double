@@ -1,12 +1,12 @@
-import React from 'react';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import DoubleGame from './DoubleGame';
+import React from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import DoubleGame from "./DoubleGame";
 
 function App() {
-    return (
+  return (
     <div className="App">
-      <DoubleGame numOfPlayers={2}/>
+      <DoubleGame numOfPlayers={2} />
     </div>
   );
 }

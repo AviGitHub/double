@@ -4,8 +4,8 @@ import DoublePic from "./DoublePic/DoublePic";
 import { Container, Row, Col } from "react-bootstrap";
 
 class DoubleCard extends Component {
-  picSelectedCb = (id) => {
-    console.log(`called from ${id}`);
+  picSelectedCb = (event) => {
+    console.log(`called from ${event.target}`);
   };
 
   makeid = (length) => {
@@ -31,7 +31,7 @@ class DoubleCard extends Component {
           <Col>
             <DoublePic
               doublePicClass="double-pic-class-big"
-              picSelectedCb={this.picSelectedCb.bind(this, id)}
+              picSelectedCb={this.picSelectedCb}
               id={cellIndex++}
             >
               {this.makeid(5)}
