@@ -2,21 +2,20 @@ import React, { Component } from "react";
 import "./App.css";
 import DoublePic from "./DoublePic/DoublePic";
 import { Container, Row, Col } from "react-bootstrap";
+import './DoubleCard.css';
 
 class DoubleCard extends Component {
-
-    constructor(props) {
+  constructor(props) {
     super(props);
-        this.picSelectedCb = this.picSelectedCb.bind(this);
-        this.raisePicSelected = props.raisePicSelected;
-        this.state = {
-            picSelected: false,
-        }
+    this.picSelectedCb = this.picSelectedCb.bind(this);
+    this.raisePicSelected = props.raisePicSelected;
+    this.state = {
+      picSelected: false,
+    };
   }
 
   picSelectedCb = (picId, picSymbol) => {
     console.log(`called from ${picId}`);
-    //this.raisePicSelected(picSymbol);
   };
 
   makeid = (length) => {
@@ -58,7 +57,7 @@ class DoubleCard extends Component {
 
   render() {
     console.log("calling render from DoubleCard");
-    return <div>{this.createDoubleCard()}</div>;
+    return <div className='DoubleCard'>{this.createDoubleCard()}</div>;
   }
 }
 
