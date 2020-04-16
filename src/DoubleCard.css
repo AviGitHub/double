@@ -1,0 +1,8 @@
+.DoubleCard {
+    margin: auto;
+    box-shadow: 0 2px 3px darkgray;
+    width: 60%;
+    padding: 16px;
+    text-align: center;
+    border: 2px solid cadetblue;
+}
