@@ -4,8 +4,19 @@ import DoublePic from "./DoublePic/DoublePic";
 import { Container, Row, Col } from "react-bootstrap";
 
 class DoubleCard extends Component {
-  picSelectedCb = (event) => {
-    console.log(`called from ${event.target}`);
+
+    constructor(props) {
+    super(props);
+        this.picSelectedCb = this.picSelectedCb.bind(this);
+        this.raisePicSelected = props.raisePicSelected;
+        this.state = {
+            picSelected: false,
+        }
+  }
+
+  picSelectedCb = (picId, picSymbol) => {
+    console.log(`called from ${picId}`);
+    //this.raisePicSelected(picSymbol);
   };
 
   makeid = (length) => {
@@ -28,18 +39,18 @@ class DoubleCard extends Component {
       cols = [];
       for (let colIndex = 0; colIndex < 2; colIndex++) {
         cols.push(
-          <Col>
+          <Col key={colIndex}>
             <DoublePic
               doublePicClass="double-pic-class-big"
               picSelectedCb={this.picSelectedCb}
-              id={cellIndex++}
+              picId={cellIndex++}
             >
               {this.makeid(5)}
             </DoublePic>
           </Col>
         );
       }
-      rows.push(<Row>{cols}</Row>);
+      rows.push(<Row key={rowIndex}>{cols}</Row>);
     }
 
     return rows;

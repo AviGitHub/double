@@ -23,7 +23,7 @@ class Player extends Component {
   constructor(props) {
     super(props);
     this.name = props.name;
-    this.name = props.name;
+    this.id = props.id;
     this.cardCount = 10;
   }
 

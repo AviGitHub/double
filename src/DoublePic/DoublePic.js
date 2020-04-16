@@ -6,16 +6,21 @@ class DoublePic extends Component {
   constructor(props) {
     super(props);
 
-    this.picId = props.id;
-    this.picSelectedCb = props.picSelectedCb;
+    this.picId = props.picId;
     this.doublePicClass = props.doublePicClass;
     this.symbol = props.children;
+    this.picSelectedCb = props.picSelectedCb;
   }
+
+  onClickHandler = (e) => {
+    e.preventDefault();
+    this.picSelectedCb(this.picId, this.symbol);
+  };
 
   render() {
     return (
       <div className={this.doublePicClass}>
-        <Button onClick={this.picSelectedCb(this.picId)}>{this.symbol}</Button>
+        <Button onClick={this.onClickHandler}>{this.symbol}</Button>
       </div>
     );
   }

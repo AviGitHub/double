@@ -18,8 +18,8 @@ class DoubleGame extends Component {
     for (let index = 0; index < this.state.numOfPlayers; index++) {
       console.log(this.state.numOfPlayers);
       playersList.push(
-        <Col>
-          <Player name={randomWords(1)[0]} />
+        <Col key={index}>
+          <Player name={randomWords(1)[0]} id={index} />
         </Col>
       );
     }
