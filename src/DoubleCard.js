@@ -29,6 +29,11 @@ class DoubleCard extends Component {
     return result;
   };
 
+  onDoublePicClickHandler = (event) => {
+    let pic = event.target;
+    console.log(`clicked from ${pic.alt}`);
+  };
+
   createDoubleCard = () => {
     let rows = [];
     let cols = [];
@@ -42,7 +47,9 @@ class DoubleCard extends Component {
             <Image
               src={DoubleImages[cellIndex].pic}
               alt={"image_" + DoubleImages[cellIndex].picId}
-            ></Image>
+              onClick={this.onDoublePicClickHandler}
+              rounded
+            />
           </Col>
         );
         cellIndex++;
