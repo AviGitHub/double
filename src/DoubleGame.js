@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Player from "./Player";
 import { Container, Row, Col } from "react-bootstrap";
 import randomWords from "random-words";
+import Images from "./ImageLoader";
 
 class DoubleGame extends Component {
   constructor(props) {
@@ -26,9 +27,20 @@ class DoubleGame extends Component {
     return playersList;
   };
 
+  // renderImages = () => {
+  //   let imagesArr = [];    
+  //   Images.forEach(element => {
+  //     imagesArr.push(
+  //       <img src={element.pic} alt={"image_" + element.picId}></img>        
+  //     );
+  //   });
+  //   return imagesArr;
+  // }
+
   render() {
     return (
       <div>
+        {/* {this.renderImages()} */}
         <Container fluid>
           <Row>{this.getPlayersTable()}</Row>
         </Container>

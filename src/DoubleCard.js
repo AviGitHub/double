@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import DoublePic from "./DoublePic/DoublePic";
-import { Container, Row, Col } from "react-bootstrap";
-import './DoubleCard.css';
+import { Row, Col, Image } from "react-bootstrap";
+import DoubleImages from "./ImageLoader";
 
 class DoubleCard extends Component {
   constructor(props) {
@@ -16,6 +15,7 @@ class DoubleCard extends Component {
 
   picSelectedCb = (picId, picSymbol) => {
     console.log(`called from ${picId}`);
+    this.raisePicSelected(picSymbol);
   };
 
   makeid = (length) => {
@@ -39,15 +39,13 @@ class DoubleCard extends Component {
       for (let colIndex = 0; colIndex < 2; colIndex++) {
         cols.push(
           <Col key={colIndex}>
-            <DoublePic
-              doublePicClass="double-pic-class-big"
-              picSelectedCb={this.picSelectedCb}
-              picId={cellIndex++}
-            >
-              {this.makeid(5)}
-            </DoublePic>
+            <Image
+              src={DoubleImages[cellIndex].pic}
+              alt={"image_" + DoubleImages[cellIndex].picId}
+            ></Image>
           </Col>
         );
+        cellIndex++;
       }
       rows.push(<Row key={rowIndex}>{cols}</Row>);
     }
@@ -57,7 +55,7 @@ class DoubleCard extends Component {
 
   render() {
     console.log("calling render from DoubleCard");
-    return <div className='DoubleCard'>{this.createDoubleCard()}</div>;
+    return <div>{this.createDoubleCard()}</div>;
   }
 }
 
