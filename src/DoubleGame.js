@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import Player from "./Player";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Image } from "react-bootstrap";
 import randomWords from "random-words";
 import Images from "./ImageLoader";
+import DoubleCard from "./DoubleCard";
 
 class DoubleGame extends Component {
   constructor(props) {
     super(props);
-
-    console.log("DoubleGame constructor props:" + JSON.stringify(props));
+   
     this.state = {
       numOfPlayers: props.numOfPlayers,
     };
@@ -27,23 +27,52 @@ class DoubleGame extends Component {
     return playersList;
   };
 
-  // renderImages = () => {
-  //   let imagesArr = [];    
-  //   Images.forEach(element => {
-  //     imagesArr.push(
-  //       <img src={element.pic} alt={"image_" + element.picId}></img>        
-  //     );
-  //   });
-  //   return imagesArr;
+  getImagesForCards = () => {
+    let tmpPicsArr = [...Images];
+
+    let card1 = [];
+    let card2 = [];
+
+    for (let index = 0; index < 9; index++) {
+      let itemIdx = Math.floor(Math.random() * tmpPicsArr.length);
+      let removed = tmpPicsArr.splice(itemIdx, 1)[0];
+           
+      card1.push(removed);
+    }
+
+    for (let index = 0; index < 8; index++) {
+      let itemIdx = Math.floor(Math.random() * tmpPicsArr.length);
+      let removed = tmpPicsArr.splice(itemIdx, 1)[0];
+      card2.push(removed);
+    }
+    let randomPicFromCard1 = card1[Math.floor(Math.random() * card1.length)];
+    card2.push(randomPicFromCard1);
+
+    if (card1.length !== 9 || card2.length !== 9) {
+      console.error("getImagesForCards");
+    }     
+
+    return { card1Pics: card1, card2Pics: card2 };
+  };
+
+  // render() {
+  //   return (
+  //     <div>
+  //       {/* {this.renderImages()} */}
+  //       <Container fluid>
+  //         <Row>{this.getPlayersTable()}</Row>
+  //       </Container>
+  //     </div>
+  //   );
   // }
 
-  render() {
-    return (
+  render(){
+    let cardsImages = this.getImagesForCards();
+
+    return(
       <div>
-        {/* {this.renderImages()} */}
-        <Container fluid>
-          <Row>{this.getPlayersTable()}</Row>
-        </Container>
+        <DoubleCard images={cardsImages.card1Pics} />
+        <DoubleCard images={cardsImages.card2Pics} />
       </div>
     );
   }

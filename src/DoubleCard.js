@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Row, Col, Image, Container } from "react-bootstrap";
-import DoubleImages from "./ImageLoader";
 import "./DoubleCard.css";
 
 class DoubleCard extends Component {
@@ -9,8 +8,8 @@ class DoubleCard extends Component {
     super(props);
     this.picSelectedCb = this.picSelectedCb.bind(this);
     this.raisePicSelected = props.raisePicSelected;
-    this.lastImageClicked = null;
-
+    this.lastImageClicked = null;      
+    
     this.state = {
       picSelected: false,
     };
@@ -77,8 +76,8 @@ class DoubleCard extends Component {
         cols.push(
           <Col key={colIndex}>
             <Image
-              src={DoubleImages[cellIndex].pic}
-              alt={"image_" + DoubleImages[cellIndex].picId}
+              src={this.props.images[cellIndex].pic}
+              alt={"image_" + this.props.images[cellIndex].picId}
               onClick={this.onDoublePicClickHandler}
               className={picStyle}
             />
@@ -91,8 +90,8 @@ class DoubleCard extends Component {
     rows.push(
       <Row key={5}>
         <Image
-          src={DoubleImages[cellIndex].pic}
-          alt={"image_" + DoubleImages[cellIndex].picId}
+          src={this.props.images[cellIndex].pic}
+          alt={"image_" + this.props.images[cellIndex].picId}
           onClick={this.onDoublePicClickHandler}
           className={this.getRandomPicStyle() + " LastImage"}
         />
@@ -103,7 +102,7 @@ class DoubleCard extends Component {
   };
 
   render() {
-    console.log("calling render from DoubleCard");
+    
     return (
       <div>
         <Container className="CardContainer">
