@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Row, Col, Image } from "react-bootstrap";
 import DoubleImages from "./ImageLoader";
+import "./DoubleCard.css";
 
 class DoubleCard extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class DoubleCard extends Component {
     this.raisePicSelected = props.raisePicSelected;
     this.state = {
       picSelected: false,
+      selectedImages: {},
     };
   }
 
@@ -34,12 +36,21 @@ class DoubleCard extends Component {
     console.log(`clicked from ${pic.alt}`);
   };
 
+  getRandomInt = (max) => {
+    return Math.floor(Math.random() * Math.floor(max));
+  };
+
+  getRandomPicStyle = () => {
+    let styles = ["DoublePicSmall", "DoublePicMedium", "DoublePicLarge"];
+    return styles[this.getRandomInt(styles.length)];
+  };
+
   createDoubleCard = () => {
     let rows = [];
     let cols = [];
     let cellIndex = 0;
 
-    for (let rowIndex = 0; rowIndex < 3; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < 4; rowIndex++) {
       cols = [];
       for (let colIndex = 0; colIndex < 2; colIndex++) {
         cols.push(
@@ -48,7 +59,7 @@ class DoubleCard extends Component {
               src={DoubleImages[cellIndex].pic}
               alt={"image_" + DoubleImages[cellIndex].picId}
               onClick={this.onDoublePicClickHandler}
-              rounded
+              className={this.getRandomPicStyle()}
             />
           </Col>
         );
