@@ -9,9 +9,10 @@ class DoubleCard extends Component {
     super(props);
     this.picSelectedCb = this.picSelectedCb.bind(this);
     this.raisePicSelected = props.raisePicSelected;
+    this.lastImageClicked = null;
+
     this.state = {
       picSelected: false,
-      selectedImages: {},
     };
   }
 
@@ -34,6 +35,25 @@ class DoubleCard extends Component {
   onDoublePicClickHandler = (event) => {
     let pic = event.target;
     console.log(`clicked from ${pic.alt}`);
+
+    if (this.lastImageClicked == null) {
+      this.lastImageClickedOriginalStyle = pic.className;
+      this.lastImageClicked = pic;
+      pic.className += " ImageClicked";
+      return;
+    }
+
+    if (this.lastImageClicked === pic) {
+      pic.className = this.lastImageClickedOriginalStyle;
+      this.lastImageClicked = null;
+      this.lastImageClickedOriginalStyle = null;
+      return;
+    } else {
+      this.lastImageClicked.className = this.lastImageClickedOriginalStyle;
+      this.lastImageClicked = pic;
+      this.lastImageClickedOriginalStyle = pic.className;
+      pic.className += " ImageClicked";
+    }
   };
 
   getRandomInt = (max) => {
@@ -53,13 +73,14 @@ class DoubleCard extends Component {
     for (let rowIndex = 0; rowIndex < 4; rowIndex++) {
       cols = [];
       for (let colIndex = 0; colIndex < 2; colIndex++) {
+        let picStyle = this.getRandomPicStyle();
         cols.push(
           <Col key={colIndex}>
             <Image
               src={DoubleImages[cellIndex].pic}
               alt={"image_" + DoubleImages[cellIndex].picId}
               onClick={this.onDoublePicClickHandler}
-              className={this.getRandomPicStyle()}
+              className={picStyle}
             />
           </Col>
         );
@@ -82,11 +103,9 @@ class DoubleCard extends Component {
   };
 
   render() {
-
-
     console.log("calling render from DoubleCard");
     return (
-      <div >
+      <div>
         <Container className="CardContainer">
           {this.createDoubleCard()}
         </Container>

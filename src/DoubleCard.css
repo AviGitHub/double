@@ -8,10 +8,6 @@
   border: 2px solid cadetblue;
 }
 
-.SelectedImage {
-  border: 2px solid red;
-}
-
 .DoublePicSmall {
   height: 20px;
   width: auto;
@@ -32,4 +28,7 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+.ImageClicked{
+    border: 2px solid red;
 }
