@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Row, Col, Image } from "react-bootstrap";
+import { Row, Col, Image, Container } from "react-bootstrap";
 import DoubleImages from "./ImageLoader";
 import "./DoubleCard.css";
 
@@ -67,13 +67,29 @@ class DoubleCard extends Component {
       }
       rows.push(<Row key={rowIndex}>{cols}</Row>);
     }
+    rows.push(
+      <Row key={5}>
+        <Image
+          src={DoubleImages[cellIndex].pic}
+          alt={"image_" + DoubleImages[cellIndex].picId}
+          onClick={this.onDoublePicClickHandler}
+          className={this.getRandomPicStyle() + " LastImage"}
+        />
+      </Row>
+    );
 
     return rows;
   };
 
   render() {
     console.log("calling render from DoubleCard");
-    return <div>{this.createDoubleCard()}</div>;
+    return (
+      <div>
+        <Container ClassName={DoubleCard.CardContainer}>
+          {this.createDoubleCard()}
+        </Container>
+      </div>
+    );
   }
 }
 
