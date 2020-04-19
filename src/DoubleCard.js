@@ -82,10 +82,12 @@ class DoubleCard extends Component {
   };
 
   render() {
+
+
     console.log("calling render from DoubleCard");
     return (
-      <div>
-        <Container ClassName={DoubleCard.CardContainer}>
+      <div >
+        <Container className="CardContainer">
           {this.createDoubleCard()}
         </Container>
       </div>
