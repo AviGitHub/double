@@ -6,18 +6,25 @@ import "./DoubleCard.css";
 class DoubleCard extends Component {
   constructor(props) {
     super(props);
-    this.picSelectedCb = this.picSelectedCb.bind(this);
+
     this.raisePicSelected = props.raisePicSelected;
-    this.lastImageClicked = null;      
-    
+    this.raisePicDeSelected = props.raisePicDeSelected;
+    this.lastImageClicked = null;
+    this.cardId = props.cardId;
+
     this.state = {
       picSelected: false,
     };
   }
 
-  picSelectedCb = (picId, picSymbol) => {
-    console.log(`called from ${picId}`);
-    this.raisePicSelected(picSymbol);
+  picSelectedCb = (picId) => {
+    console.log(`CardId:${this.cardId} select ${picId}`);
+    this.raisePicSelected(this.cardId, picId);
+  };
+
+  picDeSelectCb = (picId) => {
+    console.log(`CardId:${this.cardId} de-select ${picId}`);
+    this.props.raisePicDeSelected(this.cardId, picId);
   };
 
   makeid = (length) => {
@@ -39,6 +46,7 @@ class DoubleCard extends Component {
       this.lastImageClickedOriginalStyle = pic.className;
       this.lastImageClicked = pic;
       pic.className += " ImageClicked";
+      this.picSelectedCb(pic.picId);
       return;
     }
 
@@ -46,12 +54,14 @@ class DoubleCard extends Component {
       pic.className = this.lastImageClickedOriginalStyle;
       this.lastImageClicked = null;
       this.lastImageClickedOriginalStyle = null;
+      this.picDeSelectCb(pic.picId);
       return;
     } else {
       this.lastImageClicked.className = this.lastImageClickedOriginalStyle;
       this.lastImageClicked = pic;
       this.lastImageClickedOriginalStyle = pic.className;
       pic.className += " ImageClicked";
+      this.picSelectedCb(pic.picId);
     }
   };
 
@@ -102,7 +112,6 @@ class DoubleCard extends Component {
   };
 
   render() {
-    
     return (
       <div>
         <Container className="CardContainer">

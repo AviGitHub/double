@@ -8,7 +8,7 @@ import DoubleCard from "./DoubleCard";
 class DoubleGame extends Component {
   constructor(props) {
     super(props);
-   
+    this.PicSelectedHandler = this.PicSelectedHandler.bind(this);
     this.state = {
       numOfPlayers: props.numOfPlayers,
     };
@@ -36,7 +36,7 @@ class DoubleGame extends Component {
     for (let index = 0; index < 9; index++) {
       let itemIdx = Math.floor(Math.random() * tmpPicsArr.length);
       let removed = tmpPicsArr.splice(itemIdx, 1)[0];
-           
+
       card1.push(removed);
     }
 
@@ -50,7 +50,7 @@ class DoubleGame extends Component {
 
     if (card1.length !== 9 || card2.length !== 9) {
       console.error("getImagesForCards");
-    }     
+    }
 
     return { card1Pics: card1, card2Pics: card2 };
   };
@@ -66,13 +66,37 @@ class DoubleGame extends Component {
   //   );
   // }
 
-  render(){
+  PicSelectedHandler = (cardId, picId) => {
+    console.log(`raisePicSelected: cardId: ${cardId}, picId: ${picId}`);
+  };
+
+  PicDeSelectedHandler = (cardId, picId) => {
+    console.log(`PicDeSelectedHandler: cardId: ${cardId}, picId: ${picId}`);
+  };
+
+  render() {
     let cardsImages = this.getImagesForCards();
 
-    return(
+    return (
       <div>
-        <DoubleCard images={cardsImages.card1Pics} />
-        <DoubleCard images={cardsImages.card2Pics} />
+        <Container>
+          <Row>
+            <Col>
+              <DoubleCard
+                images={cardsImages.card1Pics}
+                raisePicSelected={this.PicSelectedHandler}
+                raisePicDeSelected={this.PicDeSelectedHandler}
+              />
+            </Col>
+            <Col>
+              <DoubleCard
+                images={cardsImages.card2Pics}
+                raisePicSelected={this.PicSelectedHandler}
+                raisePicDeSelected={this.PicDeSelectedHandler}
+              />
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
