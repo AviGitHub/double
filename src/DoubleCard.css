@@ -1,8 +1,34 @@
-.DoubleCard {
-    margin: auto;
-    box-shadow: 0 2px 3px darkgray;
-    width: 60%;
-    padding: 16px;
-    text-align: center;
-    border: 2px solid cadetblue;
+.CardContainer {
+  margin: auto;
+  box-shadow: 0 2px 3px darkgray;
+  height: 300px;
+  width: fit-content;
+  padding: 16px;
+  text-align: center;
+  border: 2px solid cadetblue;
+}
+
+.DoublePicSmall {
+  height: 20px;
+  width: auto;
+}
+
+.DoublePicMedium {
+  height: 40px;
+  width: auto;
+}
+
+.DoublePicLarge {
+  height: 60px;
+  width: auto;
+}
+
+.LastImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.ImageClicked{
+    border: 2px solid red;
 }
