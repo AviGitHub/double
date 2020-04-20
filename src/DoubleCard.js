@@ -18,12 +18,12 @@ class DoubleCard extends Component {
   }
 
   picSelectedCb = (picId) => {
-    console.log(`CardId:${this.cardId} select ${picId}`);
+    console.log(`picSelectedCb:  CardId:${this.cardId} select ${picId}`);
     this.raisePicSelected(this.cardId, picId);
   };
 
   picDeSelectCb = (picId) => {
-    console.log(`CardId:${this.cardId} de-select ${picId}`);
+    console.log(`picDeSelectCb:  CardId:${this.cardId} de-select ${picId}`);
     this.props.raisePicDeSelected(this.cardId, picId);
   };
 
@@ -46,7 +46,7 @@ class DoubleCard extends Component {
       this.lastImageClickedOriginalStyle = pic.className;
       this.lastImageClicked = pic;
       pic.className += " ImageClicked";
-      this.picSelectedCb(pic.picId);
+      this.picSelectedCb(pic.alt);
       return;
     }
 
@@ -54,14 +54,14 @@ class DoubleCard extends Component {
       pic.className = this.lastImageClickedOriginalStyle;
       this.lastImageClicked = null;
       this.lastImageClickedOriginalStyle = null;
-      this.picDeSelectCb(pic.picId);
+      this.picDeSelectCb(pic.alt);
       return;
     } else {
       this.lastImageClicked.className = this.lastImageClickedOriginalStyle;
       this.lastImageClicked = pic;
       this.lastImageClickedOriginalStyle = pic.className;
       pic.className += " ImageClicked";
-      this.picSelectedCb(pic.picId);
+      this.picSelectedCb(pic.alt);
     }
   };
 
