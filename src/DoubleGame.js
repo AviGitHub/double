@@ -9,8 +9,10 @@ class DoubleGame extends Component {
   constructor(props) {
     super(props);
     this.PicSelectedHandler = this.PicSelectedHandler.bind(this);
+    this.picSelected = { card: null, picId: null };
     this.state = {
       numOfPlayers: props.numOfPlayers,
+      win: false,
     };
   }
 
@@ -55,19 +57,31 @@ class DoubleGame extends Component {
     return { card1Pics: card1, card2Pics: card2 };
   };
 
-  // render() {
-  //   return (
-  //     <div>
-  //       {/* {this.renderImages()} */}
-  //       <Container fluid>
-  //         <Row>{this.getPlayersTable()}</Row>
-  //       </Container>
-  //     </div>
-  //   );
-  // }
+  resetCardsSelection = () => {
+    console.log("Reset cards selection");
+  };
 
   PicSelectedHandler = (cardId, picId) => {
     console.log(`raisePicSelected: cardId: ${cardId}, picId: ${picId}`);
+    if (this.picSelected.card === null) {
+      this.picSelected.card = cardId;
+      this.picSelected.picId = picId;
+      return;
+    } else if (this.picSelected.card === cardId) {
+      this.picSelected.picId = picId;
+      return;
+    } else {
+      if (this.picSelected.picId === picId) {
+        console.log("WIN!!!!!!!!!!!!!!!!");
+        this.setState({
+          win: true,
+        });
+      } else {
+        this.picSelected.card = null;
+        this.picSelected.picId = null;
+        this.resetCardsSelection();
+      }
+    }
   };
 
   PicDeSelectedHandler = (cardId, picId) => {
@@ -77,6 +91,9 @@ class DoubleGame extends Component {
   render() {
     let cardsImages = this.getImagesForCards();
 
+
+  renderGame = () => {
+    let cardsImages = this.getImagesForCards();
     return (
       <div>
         <Container>
@@ -86,6 +103,7 @@ class DoubleGame extends Component {
                 images={cardsImages.card1Pics}
                 raisePicSelected={this.PicSelectedHandler}
                 raisePicDeSelected={this.PicDeSelectedHandler}
+                cardId={1}
               />
             </Col>
             <Col>
@@ -93,12 +111,29 @@ class DoubleGame extends Component {
                 images={cardsImages.card2Pics}
                 raisePicSelected={this.PicSelectedHandler}
                 raisePicDeSelected={this.PicDeSelectedHandler}
+                cardId={2}
               />
             </Col>
           </Row>
         </Container>
       </div>
     );
+  };
+
+  renderWin = () => {
+    return (
+      <div>
+        <Container>Win!!!</Container>
+      </div>
+    );
+  };
+
+  render() {
+    if (this.state.win) {
+      return this.renderWin();
+    } else {
+      return this.renderGame();
+    }
   }
 }
 
