@@ -88,10 +88,6 @@ class DoubleGame extends Component {
     console.log(`PicDeSelectedHandler: cardId: ${cardId}, picId: ${picId}`);
   };
 
-  render() {
-    let cardsImages = this.getImagesForCards();
-
-
   renderGame = () => {
     let cardsImages = this.getImagesForCards();
     return (
@@ -120,17 +116,15 @@ class DoubleGame extends Component {
     );
   };
 
-  renderWin = () => {
-    return (
-      <div>
-        <Container>Win!!!</Container>
-      </div>
-    );
-  };
+  renderWin = (
+    <div>
+      <Container>Win!!!</Container>
+    </div>
+  );
 
   render() {
     if (this.state.win) {
-      return this.renderWin();
+      return this.renderWin;
     } else {
       return this.renderGame();
     }
